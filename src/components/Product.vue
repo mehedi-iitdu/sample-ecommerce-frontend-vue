@@ -14,7 +14,16 @@
             ${{ product.price }}
         </p>
         <button
+            v-if="hasInCart(product)"
+            class="mt-4 w-full px-6 py-2 transition ease-in duration-200 uppercase rounded-full bg-red-800 text-white border-2 border-red-900 focus:outline-none"
+            @click="removeFromCart(product)"
+        >
+            Remove From Cart
+        </button>
+        <button
+            v-else
             class="mt-4 w-full px-6 py-2 transition ease-in duration-200 uppercase rounded-full bg-gray-800 text-white border-2 border-gray-900 focus:outline-none"
+            @click="addToCart(product)"
         >
             Add to Cart
         </button>
@@ -22,6 +31,7 @@
 </template>
 
 <script>
+import {mapActions, mapGetters} from "vuex"
 export default {
     props: {
         product: {
@@ -33,6 +43,12 @@ export default {
                 price: null
             })
         }
+    },
+    methods:{
+        ...mapActions("cart", ["addToCart", "removeFromCart"]),
+    },
+    computed:{
+        ...mapGetters("cart", ["getCartProducts", "hasInCart"])
     }
 }
 </script>
