@@ -1,19 +1,20 @@
 <template>
     <div class="relative min-h-screen md:flex">
         <side-bar />
+         <v-main class="aiz-main-wrap">
+                <router-view></router-view>
+         </v-main>
         <home />
     </div>
 </template>
 
 <script>
-import Home from './components/Home.vue';
 import SideBar from "./components/SideBar.vue";
 
 export default {
     name: "App",
     components: {
         SideBar,
-        Home,
     },
 };
 </script>

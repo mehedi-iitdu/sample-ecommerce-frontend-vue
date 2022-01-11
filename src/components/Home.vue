@@ -37,7 +37,13 @@ export default {
             return await axios.get('http://127.0.0.1:8000/api/products').then((response) => {
                 this.products = [...this.products, ...response.data.data]
             })
+        },
+        sum(a,b){
+            return a+b;
         }
+    },
+    computed:{
+        
     },
     created(){
         this.getProducts()

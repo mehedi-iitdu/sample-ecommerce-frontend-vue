@@ -33,22 +33,17 @@
             >
                 <span class="text-2xl font-extrabold">eCommerce</span>
             </a>
-
-
             <nav>
-                <Link
+                 <router-link 
                     to="/"
-                    class-name="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white"
+                    class="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white"
                 >
-                    Home
-                </Link>
-
-                <Link
+                    Home</router-link>
+                 <router-link 
                     to="/order"
-                    class-name="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white"
+                    class="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white"
                 >
-                    Order
-                </Link>
+                    Order</router-link>
             </nav>
         </div>
     </div>
