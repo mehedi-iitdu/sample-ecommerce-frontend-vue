@@ -4,16 +4,16 @@
             <div class="flex">
                 <button
                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-4 mb-4"
-                    @click="getProducts"
+                    @click="getProductsFromApi"
                 >
                     Load More
                 </button>
-                <p>{{ products.length }} Products found</p>
+                <p>{{ getProducts.length }} Products found</p>
             </div>
 
             <div class="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
                 <div
-                    v-for="(product, index) in products"
+                    v-for="(product, index) in getProducts"
                     :key="index"
                     class="group"
                 >
@@ -25,28 +25,21 @@
 </template>
 
 <script>
+import {mapActions, mapGetters} from "vuex"
 import Product from './Product.vue'
-import axios from 'axios'
 export default {
     data: () => ({
         products: []
     }),
     components: { Product },
     methods:{
-        async getProducts(){
-            return await axios.get('http://127.0.0.1:8000/api/products').then((response) => {
-                this.products = [...this.products, ...response.data.data]
-            })
-        },
-        sum(a,b){
-            return a+b;
-        }
+        ...mapActions("products", ["getProductsFromApi"]),
     },
     computed:{
-        
+        ...mapGetters("products", ["getProducts"]),
     },
     created(){
-        this.getProducts()
+        this.getProductsFromApi();
     }
 }
 </script>

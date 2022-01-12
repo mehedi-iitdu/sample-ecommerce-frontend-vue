@@ -10,6 +10,15 @@ export default {
     hasInCart: (state) => (product) => {
       return state.cartProducts.some((item) => item.productId === product.id);
     },
+    qtyInCart: (state) => (product) => {
+      const cartItem = state.cartProducts.find((item)=>{
+        return item.productId === product.id
+      });
+      if(cartItem!== undefined) {
+        return cartItem.quantity
+      }
+      return 0;
+    }
   },
   mutations: {
     addToCart(state, product) {
@@ -26,6 +35,21 @@ export default {
         });
       }
     },
+    manageQuantity(state, product, action) {
+      const cartItem = state.cartProducts.find((item)=>{
+        return item.productId === product.id
+      });
+
+      if(cartItem!== undefined) {
+        switch (action) {
+          case 'increase':
+              
+            break;
+          default:
+            break;
+        }
+      } // else alert error
+    },
     removeFromCart(state, product) {
       state.cartProducts = state.cartProducts.filter(
         (item) => item.productId !== product.id
@@ -35,6 +59,9 @@ export default {
   actions: {
     addToCart({ commit }, product) {
       commit("addToCart", product);
+    },
+    manageQuantity({commit}, product, action) {
+      commit("manageQuantity", product, action);
     },
     removeFromCart({ commit }, product) {
       commit("removeFromCart", product);
